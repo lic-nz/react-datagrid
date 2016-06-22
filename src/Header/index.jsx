@@ -444,14 +444,17 @@ module.exports = React.createClass({
 
     handleMouseDown: function(column, event){
         if (event && event.nativeEvent && event.nativeEvent.resizing){
-            return
+            return;
         }
 
         if (!this.props.reorderColumns){
-            return
+            return;
         }
 
-        setupColumnDrag(this, this.props, column, event)
+        if (!column.draggable){
+            return;
+        }
+        setupColumnDrag(this, this.props, column, event);
     },
 
     onResizeDragStart: function(config){
