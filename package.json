@@ -1,6 +1,6 @@
 {
   "name": "react-datagrid",
-  "version": "2.0.1",
+  "version": "2.0.5-lic.3",
   "description": "React DataGrid",
   "main": "lib/index.js",
   "scripts": {
@@ -79,7 +79,7 @@
     "react-menus": "^2.0.4",
     "react-simple-toolbar": "^1.0.5",
     "react-style-normalizer": "^1.2.8",
-    "react-virtual-scroller": "^2.0.0",
+    "react-virtual-scroller": "^2.1.2-lic.4",
     "region": "^2.1.2",
     "region-align": "^2.1.2",
     "ustring": "^1.4.1",
