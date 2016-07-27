@@ -10,7 +10,7 @@ var DataGrid = require('./src')
 var faker = window.faker = require('faker');
 var preventDefault = require('./src/utils/preventDefault')
 
-// console.log('x');
+console.log(React.version,' react version');
 var gen = (function(){
 
     var cache = {}
