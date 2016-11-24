@@ -21,28 +21,39 @@ function copyProps(target, source, list){
 
 var PropTypes = React.PropTypes
 
+var propTypes = {
+    className     : PropTypes.string,
+    firstClassName: PropTypes.string,
+    lastClassName : PropTypes.string,
+
+    contentPadding: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
+    ]),
+
+    column : PropTypes.object,
+    columns: PropTypes.array,
+    index  : PropTypes.number,
+
+    style      : PropTypes.object,
+    text       : PropTypes.any,
+    rowIndex   : PropTypes.number,
+
+    defaultStyle: PropTypes.object,
+
+    // Not used within this component, but specified here so that 'header' is automatically removed
+    // from the props passed to a rendered <div />
+    header: PropTypes.any,
+    renderCell: PropTypes.any,
+    renderText: PropTypes.any,
+    textPadding: PropTypes.any,
+}
+
 var Cell = React.createClass({
 
     displayName: 'ReactDataGrid.Cell',
 
-    propTypes: {
-        className     : PropTypes.string,
-        firstClassName: PropTypes.string,
-        lastClassName : PropTypes.string,
-
-        contentPadding: PropTypes.oneOfType([
-            PropTypes.number,
-            PropTypes.string
-        ]),
-
-        column : PropTypes.object,
-        columns: PropTypes.array,
-        index  : PropTypes.number,
-
-        style      : PropTypes.object,
-        text       : PropTypes.any,
-        rowIndex   : PropTypes.number
-    },
+    propTypes,
 
     getDefaultProps: function(){
         return {
@@ -135,7 +146,12 @@ var Cell = React.createClass({
 
         var renderProps = assign({}, props)
 
-        delete renderProps.data
+        var propTypesToRemoveFromRenderProps = assign({}, propTypes)
+        delete propTypesToRemoveFromRenderProps.className
+        delete propTypesToRemoveFromRenderProps.style
+        Object.keys(propTypesToRemoveFromRenderProps).forEach(propKey => {
+            delete renderProps[propKey]
+        })
 
         return (
             <div {...renderProps}>

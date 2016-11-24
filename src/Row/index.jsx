@@ -9,15 +9,29 @@ var CellFactory = React.createFactory(Cell)
 var ReactMenu = require('react-menus')
 var ReactMenuFactory = React.createFactory(ReactMenu)
 
+var propTypes = {
+  data   : React.PropTypes.object,
+  columns: React.PropTypes.array,
+  index  : React.PropTypes.number,
+
+  // Not used within this component, but specified here so that 'header' is automatically removed
+  // from the props passed to a rendered <div />
+  cellFactory: React.PropTypes.any,
+  defaultStyle: React.PropTypes.any,
+  renderCell: React.PropTypes.any,
+  renderText: React.PropTypes.any,
+  rowHeight: React.PropTypes.any,
+  minWidth: React.PropTypes.any,
+  rowContextMenu: React.PropTypes.any,
+  showMenu: React.PropTypes.any,
+  _onClick: React.PropTypes.any,
+}
+
 module.exports = React.createClass({
 
   displayName: 'ReactDataGrid.Row',
 
-  propTypes: {
-    data   : React.PropTypes.object,
-    columns: React.PropTypes.array,
-    index  : React.PropTypes.number
-  },
+  propTypes,
 
   getDefaultProps: function(){
 
@@ -37,7 +51,12 @@ module.exports = React.createClass({
     var cells = props.children || props.columns
             .map(this.renderCell.bind(this, this.props))
 
-    return <div {...props}>{cells}</div>
+    var renderProps = assign({}, props)
+    Object.keys(propTypes).forEach(propKey => {
+        delete renderProps[propKey]
+    })
+
+    return <div {...renderProps}>{cells}</div>
   },
 
   prepareProps: function(thisProps){
