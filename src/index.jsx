@@ -5,6 +5,7 @@ require('es6-promise').polyfill()
 
 import { findDOMNode } from 'react-dom'
 import React from 'react'
+import ReactPropTypes from 'prop-types'
 
 var assign   = require('object-assign')
 import LoadMask from 'react-load-mask'
@@ -89,25 +90,25 @@ module.exports = React.createClass({
     ],
 
     propTypes: {
-        loading          : React.PropTypes.bool,
-        virtualRendering : React.PropTypes.bool,
+        loading          : ReactPropTypes.bool,
+        virtualRendering : ReactPropTypes.bool,
 
         //specify false if you don't want any column to be resizable
-        resizableColumns : React.PropTypes.bool,
-        filterable: React.PropTypes.bool,
+        resizableColumns : ReactPropTypes.bool,
+        filterable: ReactPropTypes.bool,
 
         //specify false if you don't want column menus to be displayed
-        withColumnMenu   : React.PropTypes.bool,
-        cellEllipsis     : React.PropTypes.bool,
-        sortable         : React.PropTypes.bool,
-        loadMaskOverHeader : React.PropTypes.bool,
-        idProperty       : React.PropTypes.string.isRequired,
+        withColumnMenu   : ReactPropTypes.bool,
+        cellEllipsis     : ReactPropTypes.bool,
+        sortable         : ReactPropTypes.bool,
+        loadMaskOverHeader : ReactPropTypes.bool,
+        idProperty       : ReactPropTypes.string.isRequired,
 
         //you can customize the column menu by specifying a factory
-        columnMenuFactory: React.PropTypes.func,
-        onDataSourceResponse: React.PropTypes.func,
-        onDataSourceSuccess: React.PropTypes.func,
-        onDataSourceError: React.PropTypes.func,
+        columnMenuFactory: ReactPropTypes.func,
+        onDataSourceResponse: ReactPropTypes.func,
+        onDataSourceSuccess: ReactPropTypes.func,
+        onDataSourceError: ReactPropTypes.func,
 
         /**
          * @cfg {Number/String} columnMinWidth=50

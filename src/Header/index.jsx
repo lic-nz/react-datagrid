@@ -1,7 +1,7 @@
 'use strict';
 
 var React   = require('react')
-var Region  = require('region')
+var PropTypes = require('prop-types')
 var ReactMenu = React.createFactory(require('react-menus'))
 var assign  = require('object-assign')
 var clone   = require('clone')
@@ -59,7 +59,7 @@ module.exports = React.createClass({
     displayName: 'ReactDataGrid.Header',
 
     propTypes: {
-        columns: React.PropTypes.array
+        columns: PropTypes.array
     },
 
     onDrop: function(event){

@@ -1,8 +1,9 @@
 'use strict';
 
-var React  = require('react')
-var assign = require('object-assign')
-var normalize = require('react-style-normalizer')
+var React  = require('react');
+var PropTypes = require('prop-types');
+var assign = require('object-assign');
+var normalize = require('react-style-normalizer');
 
 var TEXT_ALIGN_2_JUSTIFY = {
     right : 'flex-end',
@@ -18,8 +19,6 @@ function copyProps(target, source, list){
     })
 
 }
-
-var PropTypes = React.PropTypes
 
 var propTypes = {
     className     : PropTypes.string,
