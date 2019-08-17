@@ -2,9 +2,10 @@
 
 var React  = require('react')
 var PropTypes = require('prop-types')
+var createReactClass = require('create-react-class')
 var assign = require('object-assign')
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
     displayName: 'ReactDataGrid.ResizeProxy',
 

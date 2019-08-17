@@ -3,6 +3,7 @@
 import { findDOMNode } from 'react-dom';
 var React     = require('react')
 var ReactDOM  = require('react-dom')
+var createReactClass = require('create-react-class')
 var assign    = require('object-assign')
 var Toolbar   = require('react-simple-toolbar')
 var Region    = Toolbar.Region
@@ -112,7 +113,7 @@ var defaultStyles = {
 	// gotoNext: { marginLeft: 10}
 }
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
 	displayName: 'PaginationToolbar',
 

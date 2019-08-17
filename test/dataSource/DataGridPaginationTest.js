@@ -2,6 +2,7 @@
 
 var DataGrid  = require('../DataGrid')
 var React     = require('react/addons')
+var createReactClass = require('create-react-class');
 var TestUtils = React.addons.TestUtils
 
 var TABLE_CLASS          = 'z-table'
@@ -284,7 +285,7 @@ describe('DataGrid Test Suite - Pagination', function(){
             })
         };
 
-        var component = React.createClass({
+        var component = createReactClass({
             displayName : "component",
             increment : function() {
                 // increment page size

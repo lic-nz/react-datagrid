@@ -66,6 +66,7 @@
   },
   "dependencies": {
     "clone": "^1.0.2",
+    "create-react-class": "^15.6.3",
     "css-utils": "^1.0.0",
     "drag-helper": "^1.2.3",
     "es6-promise": "^3.0.2",

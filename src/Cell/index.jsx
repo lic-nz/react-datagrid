@@ -2,22 +2,13 @@
 
 var React  = require('react');
 var PropTypes = require('prop-types');
+var createReactClass = require('create-react-class');
 var assign = require('object-assign');
 var normalize = require('react-style-normalizer');
 
 var TEXT_ALIGN_2_JUSTIFY = {
     right : 'flex-end',
     center: 'center'
-}
-
-function copyProps(target, source, list){
-
-    list.forEach(function(name){
-        if (name in source){
-            target[name] = source[name]
-        }
-    })
-
 }
 
 var propTypes = {
@@ -48,7 +39,7 @@ var propTypes = {
     textPadding: PropTypes.any,
 }
 
-var Cell = React.createClass({
+var Cell = createReactClass({
 
     displayName: 'ReactDataGrid.Cell',
 

@@ -6,6 +6,7 @@ require('es6-promise').polyfill()
 import { findDOMNode } from 'react-dom'
 import React from 'react'
 import ReactPropTypes from 'prop-types'
+import createReactClass from 'create-react-class'
 
 var assign   = require('object-assign')
 import LoadMask from 'react-load-mask'
@@ -80,7 +81,7 @@ function findColumn(columns, column){
     }
 }
 
-module.exports = React.createClass({
+module.exports = createReactClass({
 
     displayName: 'ReactDataGrid',
 
