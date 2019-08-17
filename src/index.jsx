@@ -12,7 +12,6 @@ var assign   = require('object-assign')
 import LoadMask from 'react-load-mask'
 var Region   = require('region')
 
-var PaginationToolbar = React.createFactory(require('./PaginationToolbar'))
 var Column = require('./models/Column')
 
 var PropTypes      = require('./PropTypes')
@@ -428,47 +427,15 @@ module.exports = createReactClass({
             loadMask = <LoadMask visible={props.loading} />
         }
 
-        var paginationToolbar
-
-        if (props.pagination){
-            var page    = props.page
-            var minPage = props.minPage
-            var maxPage = props.maxPage
-
-            var paginationToolbarFactory = props.paginationFactory || PaginationToolbar
-            var paginationProps = assign({
-                dataSourceCount : props.dataSourceCount,
-                page            : page,
-                pageSize        : props.pageSize,
-                minPage         : minPage,
-                maxPage         : maxPage,
-                reload          : this.reload,
-                onPageChange    : this.gotoPage,
-                onPageSizeChange: this.setPageSize,
-                border          : props.style.border
-            }, props.paginationToolbarProps)
-
-            paginationToolbar = paginationToolbarFactory(paginationProps)
-
-            if (paginationToolbar === undefined){
-                paginationToolbar = PaginationToolbar(paginationProps)
-            }
-        }
-
-        var topToolbar
-        var bottomToolbar
-
-        if (paginationToolbar){
-            if (paginationToolbar.props.position == 'top'){
-                topToolbar = paginationToolbar
-            } else {
-                bottomToolbar = paginationToolbar
-            }
+        if (props.pagination) {
+            throw new Error(
+                'Pagination functionality has been removed (by LIC) in order to ' +
+                'upgrade to React v16 and decrease the maintenance cost going forward.'
+            );
         }
 
         var result = (
             <div {...renderProps}>
-                {topToolbar}
                 <div className="z-inner">
                     {header}
                     {wrapper}
@@ -478,7 +445,6 @@ module.exports = createReactClass({
 
                 {loadMask}
                 {renderMenu(menuProps)}
-                {bottomToolbar}
             </div>
         )
 
