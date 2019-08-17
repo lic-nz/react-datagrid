@@ -9,7 +9,6 @@ import ReactPropTypes from 'prop-types'
 import createReactClass from 'create-react-class'
 
 var assign   = require('object-assign')
-import LoadMask from 'react-load-mask'
 var Region   = require('region')
 
 var Column = require('./models/Column')
@@ -27,13 +26,8 @@ var group           = require('./utils/group')
 var slice          = require('./render/slice')
 var getTableProps    = require('./render/getTableProps')
 var getGroupedRows = require('./render/getGroupedRows')
-var renderMenu     = require('./render/renderMenu')
-
-var preventDefault = require('./utils/preventDefault')
 
 var isArray = Array.isArray
-
-var SIZING_ID = '___SIZING___'
 
 function clamp(value, min, max){
     return value < min?
@@ -86,7 +80,6 @@ module.exports = createReactClass({
 
     mixins: [
         require('./RowSelect'),
-        require('./ColumnFilter')
     ],
 
     propTypes: {
@@ -369,7 +362,6 @@ module.exports = createReactClass({
 
             toggleColumn     : this.toggleColumn.bind(this, props),
             showMenu         : this.showMenu,
-            filterMenuFactory : this.filterMenuFactory,
             menuColumn       : state.menuColumn,
             columnMenuFactory: props.columnMenuFactory
 
@@ -377,9 +369,7 @@ module.exports = createReactClass({
     },
 
     prepareFooter: function(props, state){
-        return (props.footerFactory || React.DOM.div)({
-            className: 'z-footer-wrapper'
-        })
+        return <div className='z-footer-wrapper' />
     },
 
     prepareRenderProps: function(props){
@@ -421,12 +411,6 @@ module.exports = createReactClass({
             menu   : this.state.menu
         }
 
-        var loadMask
-
-        if (props.loadMaskOverHeader){
-            loadMask = <LoadMask visible={props.loading} />
-        }
-
         if (props.pagination) {
             throw new Error(
                 'Pagination functionality has been removed (by LIC) in order to ' +
@@ -442,9 +426,6 @@ module.exports = createReactClass({
                     {footer}
                     {resizeProxy}
                 </div>
-
-                {loadMask}
-                {renderMenu(menuProps)}
             </div>
         )
 

@@ -132,7 +132,7 @@ var Cell = createReactClass({
 
         var content = props.renderCell?
                             props.renderCell(contentProps, text, props):
-                            React.DOM.div(contentProps, text)
+                            React.createElement('div', contentProps, text)
 
         var renderProps = assign({}, props)
 

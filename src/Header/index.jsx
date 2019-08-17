@@ -3,7 +3,6 @@
 var React   = require('react')
 var PropTypes = require('prop-types')
 var createReactClass = require('create-react-class')
-var ReactMenu = React.createFactory(require('react-menus'))
 var assign  = require('object-assign')
 var clone   = require('clone')
 var asArray = require('../utils/asArray')
@@ -170,8 +169,6 @@ module.exports = createReactClass({
             left: 0
         }
 
-        var menu = this.renderColumnMenu(props, state, column, index)
-
         if (state.dragColumn && state.shiftIndexes && state.shiftIndexes[index]){
             style.left = state.shiftSize
         }
@@ -181,17 +178,6 @@ module.exports = createReactClass({
             style.zIndex = 1
             style.left = state.dragLeft || 0
         }
-
-        var filterIcon = props.filterIcon || <svg version="1.1" style={{transform: 'translate3d(0,0,0)', height:'100%', width: '100%', padding: '0px 2px' }} viewBox="0 0 3 4">
-                                <polygon points="0,0 1,2 1,4 2,4 2,2 3,0 " style={{fill: props.filterIconColor,strokeWidth:0, fillRule: 'nonZero'}} />
-                            </svg>
-
-        var filter  = column.filterable?
-                        <div className="z-show-filter" onMouseUp={this.handleFilterMouseUp.bind(this, column)}>
-                            {filterIcon}
-                        </div>
-                        :
-                        null
 
         var resizer = column.resizable?
                         <span className="z-column-resize" onMouseDown={this.handleResizeMouseDown.bind(this, column)} />:
@@ -209,10 +195,6 @@ module.exports = createReactClass({
             }
 
             className += ' z-sortable'
-        }
-
-        if (filter){
-            className += ' z-filterable'
         }
 
         if (state.mouseOver === column.name && !resizing){
@@ -245,8 +227,6 @@ module.exports = createReactClass({
                 onMouseOver={this.handleMouseOver.bind(this, column)}
                 {...events}
             >
-                {filter}
-                {menu}
                 {resizer}
             </Cell>
         )
@@ -284,116 +264,6 @@ module.exports = createReactClass({
         ;(this.props.onSortChange || emptyFn)(sortInfo)
     },
 
-    renderColumnMenu: function(props, state, column, index){
-        if (!props.withColumnMenu){
-            return
-        }
-
-        var menuIcon = props.menuIcon || <svg version="1.1" style={{transform: 'translate3d(0,0,0)', height:'100%', width: '100%', padding: '0px 2px' }} viewBox="0 0 3 4">
-                <polygon points="0,0 1.5,3 3,0 " style={{fill: props.menuIconColor,strokeWidth:0, fillRule: 'nonZero'}} />
-            </svg>
-
-        return <div className="z-show-menu" onMouseUp={this.handleShowMenuMouseUp.bind(this, props, column, index)}>
-            {menuIcon}
-        </div>
-    },
-
-    handleShowMenuMouseUp: function(props, column, index, event){
-        event.nativeEvent.stopSort = true
-
-        this.showMenu(column, event)
-    },
-
-    showMenu: function(column, event){
-
-        var menuItem = function(column){
-            var visibility = this.props.columnVisibility
-
-            var visible = column.visible
-
-            if (column.name in visibility){
-                visible = visibility[column.name]
-            }
-
-            return {
-                cls     : visible?'z-selected': '',
-                selected: visible? <span style={{fontSize: '0.95em'}}>✓</span>: '',
-                label   : column.title,
-                fn      : this.toggleColumn.bind(this, column)
-            }
-        }.bind(this)
-
-        function menu(eventTarget, props){
-
-            var columns = props.gridColumns
-
-            props.columns = [ 'selected', 'label']
-            props.items = columns.map(menuItem)
-            props.alignTo = eventTarget
-            props.alignPositions = [
-                'tl-bl',
-                'tr-br',
-                'bl-tl',
-                'br-tr'
-            ]
-            props.style = {
-                position: 'absolute'
-            }
-
-            var factory = this.props.columnMenuFactory || ReactMenu
-
-            var result = factory(props)
-
-            return result === undefined?
-                    ReactMenu(props):
-                    result
-        }
-
-        this.props.showMenu(menu.bind(this, event.currentTarget), {
-            menuColumn: column.name
-        })
-    },
-
-    showFilterMenu: function(column, event){
-
-        function menu(eventTarget, props){
-
-            var defaultFactory = this.props.filterMenuFactory
-            var factory = column.filterMenuFactory || defaultFactory
-
-            props.columns = ['component']
-            props.column = column
-            props.alignTo = eventTarget
-            props.alignPositions = [
-                'tl-bl',
-                'tr-br',
-                'bl-tl',
-                'br-tr'
-            ]
-            props.style = {
-                position: 'absolute'
-            }
-
-            var result = factory(props)
-
-            return result === undefined?
-                        defaultFactory(props):
-                        result
-        }
-
-        this.props.showMenu(menu.bind(this, event.currentTarget), {
-            menuColumn: column.name
-        })
-    },
-
-    toggleColumn: function(column){
-        this.props.toggleColumn(column)
-    },
-
-    hideMenu: function(){
-        this.props.showColumnMenu(null, null)
-    },
-
     handleResizeMouseDown: function(column, event){
         setupColumnResize(this, this.props, column, event)
 
@@ -404,13 +274,6 @@ module.exports = createReactClass({
         if (event.nativeEvent){
             event.nativeEvent.resizing = true
         }
-    },
-
-    handleFilterMouseUp: function(column, event){
-        event.nativeEvent.stopSort = true
-
-        this.showFilterMenu(column, event)
-        // event.stopPropagation()
     },
 
     handleMouseUp: function(column, event){
