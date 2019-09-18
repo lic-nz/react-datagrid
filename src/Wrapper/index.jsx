@@ -4,7 +4,7 @@ var React = require('react')
 var PropTypes = require('prop-types')
 var createReactClass = require('create-react-class')
 var assign = require('object-assign')
-var Scroller = require('react-virtual-scroller')
+var Scroller = require('@licnz/react-virtual-scroller')
 
 function emptyFn(){}
 
