@@ -78,7 +78,6 @@
     "normalize.css": "^3.0.3",
     "object-assign": "^4.0.1",
     "prop-types": "^15.7.2",
-    "react-load-mask": "2.0.3-lic.0",
     "react-style-normalizer": "^1.2.8",
     "region": "^2.1.2",
     "region-align": "^2.1.2",
