@@ -68,7 +68,7 @@
     "webpack-dev-server": "^1.9.0"
   },
   "dependencies": {
-    "@licnz/react-virtual-scroller": "^2.1.4-lic.5",
+    "@licnz/react-virtual-scroller": "2.1.4-lic.5",
     "clone": "^1.0.2",
     "create-react-class": "^15.6.3",
     "css-utils": "^1.0.0",
@@ -98,6 +98,6 @@
   },
   "homepage": "https://github.com/lic-nz/react-datagrid",
   "publishConfig": {
-    "registry": "https://npm-proxy.fury.io/licnz/"
+    "registry": "https://npm.fury.io/licnz/"
   }
 }

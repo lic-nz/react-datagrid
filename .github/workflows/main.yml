@@ -21,7 +21,7 @@ jobs:
 
       - name: Set npm token
         run: |
-          echo -e "//npm-proxy.fury.io/licnz/:_authToken=${NODE_AUTH_TOKEN}\nalways-auth=true" > ~/.npmrc
+          echo -e "//npm.fury.io/licnz/:_authToken=${NODE_AUTH_TOKEN}\n//npm-proxy.fury.io/licnz/:_authToken=${NODE_AUTH_TOKEN}\nalways-auth=true" > ~/.npmrc
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -39,7 +39,7 @@ jobs:
             echo "Version $newVersion hasn't been published yet!"
             echo "Publishing a new release..."
 
-            npm publish --registry=https://npm-proxy.fury.io/licnz/
+            npm publish --registry=https://npm.fury.io/licnz/
           else
             echo "We've already published version $existingVersion."
           fi
