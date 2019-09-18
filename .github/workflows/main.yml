@@ -39,7 +39,7 @@ jobs:
             echo "Version $newVersion hasn't been published yet!"
             echo "Publishing a new release..."
 
-            npm publish --registry=https://npm.fury.io/licnz/
+            npm publish
           else
             echo "We've already published version $existingVersion."
           fi
