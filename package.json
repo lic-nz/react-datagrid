@@ -1,5 +1,5 @@
 {
-  "name": "react-datagrid",
+  "name": "@licnz/react-datagrid",
   "version": "2.1.2-lic.3",
   "description": "React DataGrid",
   "main": "lib/index.js",
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/zippyui/react-datagrid.git"
+    "url": "https://github.com/lic-nz/react-datagrid.git"
   },
   "keywords": [
     "grid",
@@ -66,6 +66,7 @@
     "webpack-dev-server": "^1.9.0"
   },
   "dependencies": {
+    "@licnz/react-virtual-scroller": "^2.1.4-lic.5",
     "clone": "^1.0.2",
     "create-react-class": "^15.6.3",
     "css-utils": "^1.0.0",
@@ -79,7 +80,6 @@
     "prop-types": "^15.7.2",
     "react-load-mask": "2.0.3-lic.0",
     "react-style-normalizer": "^1.2.8",
-    "react-virtual-scroller": "2.1.4-lic.5",
     "region": "^2.1.2",
     "region-align": "^2.1.2",
     "ustring": "^1.4.1",
@@ -93,10 +93,10 @@
   "contributors": [],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zippyui/react-datagrid/issues"
+    "url": "https://github.com/lic-nz/react-datagrid/issues"
   },
-  "homepage": "https://github.com/zippyui/react-datagrid",
+  "homepage": "https://github.com/lic-nz/react-datagrid",
   "publishConfig": {
-    "registry": "http://nuget.lic.co.nz/npm/NPM"
+    "registry": "https://npm-proxy.fury.io/licnz/"
   }
 }
