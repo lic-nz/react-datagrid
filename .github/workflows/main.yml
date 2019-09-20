@@ -32,4 +32,4 @@ jobs:
         run: npm run build
 
       - name: Publish to GemFury
-        uses: lic-nz/action-npm-publish@v1
+        uses: node_modules/@licnz/action-npm-publish
