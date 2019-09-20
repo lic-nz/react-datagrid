@@ -32,20 +32,4 @@ jobs:
         run: npm run build
 
       - name: Publish to GemFury
-        run: |
-          # Get the version set in the package.json.
-          newVersion=$(node -e "console.log(require('./package.json').version)")
-          # Check if the version in package.json has already been published to
-          # the registry. Note that `|| true` suppresses errors - an error is
-          # thrown if npm reports that the package doesn't exist.
-          # `2> /dev/null` throws away any error output.
-          existingVersion=$(npm view @licnz/react-datagrid@$newVersion version 2> /dev/null || true)
-
-          if [ "$existingVersion" != $newVersion ]; then
-            echo "Version $newVersion hasn't been published yet!"
-            echo "Publishing a new release..."
-
-            npm publish
-          else
-            echo "We've already published version $existingVersion."
-          fi
+        uses: lic-nz/action-npm-publish@v1
