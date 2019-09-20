@@ -35,7 +35,7 @@
     "grid"
   ],
   "devDependencies": {
-    "@licnz/action-npm-publish": "0.0.1",
+    "@licnz/action-npm-publish": "0.0.2",
     "autoprefixer-loader": "^3.1.0",
     "babel-core": "^6.1.2",
     "babel-loader": "^6.1.0",
